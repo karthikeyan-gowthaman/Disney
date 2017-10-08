@@ -1,0 +1,36 @@
+		<div>
+		 	<div data-dojo-type="idx/form/TextBox" 
+	 					data-dojo-props="data_dojo_props_diff: {
+	 								_sc_extensibility_operation : 'insert' , 
+		_sc_extensibility_moveOrder : '1' , 
+		_sc_extensibility_referenceUId : 'txtDisplaySvcNo' , 
+		uId : 'extn_txtCardNo' , 
+		_sc_extensibility_position : 'before'  
+ 		,scExtensionDataFn :
+		 function() { 
+			return { 
+			 	label : 			this.getSimpleBundleString('CardNumber')
+,	
+			 	bindingData : 	{
+		 targetBinding : 	[
+	 		{
+		 path : 			'PaymentMethod.SvcNo'
+,
+		 scExtensibilityArrayItemId : 			'extn_TargetBindings_0'
+,
+		 namespace : 			'PaymentCapture_input'
+	}
+	]
+	}
+			}
+		}
+	 					}">
+		 	</div>  
+		 	<div data-dojo-type="idx/form/TextBox" 
+	 					data-dojo-props="data_dojo_props_diff: {
+	 								_sc_extensibility_operation : 'change' , 
+		_sc_extensibility_referenceUId : 'txtPaymentReference1' , 
+		required : true  
+	 					}">
+		 	</div>  
+		</div>

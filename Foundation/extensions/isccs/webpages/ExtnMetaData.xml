@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Extensions>
+    <Identifier id="">
+        <UIExtns>
+            <UIExtn appScreen="isccs.order.create.additems.AddItems"
+                extnScreen="extn.order.create.additems.AddItemsExtn" type="diffrential"/>
+			<UIExtn
+                appScreen="isccs.common.paymentCapture.PaymentCapture_CreditCard"
+                extnScreen="extn.common.paymentCapture.PaymentCapture_CreditCardExtn" type="diffrential"/>
+			<UIExtn
+                appScreen="isccs.common.paymentCapture.PaymentCapture_StoredValue"
+                extnScreen="extn.common.paymentCapture.PaymentCapture_StoredValueExtn" type="diffrential"/>
+        </UIExtns>
+    </Identifier>
+</Extensions>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--/*******************************************************************************
+ * Licensed Materials - Property of IBM
+ * Copyright IBM Corp. 2014, 2016
+ ********************************************************************************/-->
+
+<OrderList TotalNumberOfRecords="">
+	<Order Status="" ShipNode="" SellerOrganizationCode="" ReturnOrderHeaderKeyForExchange="" ReturnByGiftRecipient="" ReqShipDate="" ReqDeliveryDate="" ReqCancelDate="" ReceivingNode="" PaymentStatus="" PaymentRuleId="" OriginalTotalAmount="" OriginalTax="" OrderType="" OrderNo="" OrderName="" OrderHeaderKey="" OrderDate="" Modifyuserid="" Modifyts="" MaxOrderStatusDesc="" MaxOrderStatus="" HoldReasonCode="" HoldFlag="" ExchangeType="" EntryType="" EnterpriseCode="" EnteredBy="" DraftOrderFlag="" DocumentType="" BillToID="" Action="" CustomerFirstName="" CustomerContactID="" CustomerLastName="" CustomerEMailID="" >
+	<Extn ExtnInvoiceTillNo="" ExtnIsBorderFree="" ExtnIsGuestOrder="" ExtnPaymentTillNo="" ExtnCommunicationChannel="" ExtnSalesChannel=""/>
+		<PriceInfo TotalAmount="" EnterpriseCurrency="" Currency=""/>
+		<OverallTotals LineSubTotal="" GrandTotal=""/>
+		<OrderLines>
+			<OrderLine DerivedFromOrderHeaderKey="" Status="" ShipToID="" ShipNode="" OrderHeaderKey="" HoldReasonCode="" HoldFlag="" SubLineNo="" StatusQuantity="" PrimeLineNo="" PipelineKey="" OrderedQty="" OrderLineKey="" MaxLineStatusDesc="" MaxLineStatus="" LineType="" KitCode="" ItemGroupCode="" FulfillmentType="" DeliveryMethod="" ShipToKey="" SCAC="" CarrierServiceCode="">
+				<Item UnitOfMeasure="" ItemID="" UnitCost="" ProductLine="" ManufacturerName="" ManufacturerItemDesc="" ManufacturerItem="" CountryOfOrigin="" CostCurrency="" BundleFulfillmentMode="" TaxProductCode="" NMFCCode="" NMFCClass="" HarmonizedCode="" ECCNNo="" UPCCode="" SupplierItemDesc="" SupplierItem="" ScheduleBCode="" ProductClass="" NMFCDescription="" ItemWeightUOM="" ItemWeight="" ItemShortDesc="" ItemDesc="" ISBN="" CustomerItemDesc="" CustomerItem="" AlternateItemID=""/>
+				<ItemDetails  ItemID="" ItemKey="" UnitOfMeasure="">
+				<PrimaryInformation  Description=""  ImageID="" ImageLabel="" ImageLocation=""  ShortDescription="" SizeCode="" Status="" ItemType="" />
+				<AdditionalAttributeList>
+				<AdditionalAttribute  Name="" Value=""/></AdditionalAttributeList>
+				</ItemDetails>
+				<LinePriceInfo UnitPrice="" LineTotal=""/>
+				<OrderDates>
+					<OrderDate OrderHeaderKey="" OrderLineKey="" RequestedDate="" OrderReleaseKey="" ExpectedDate=""/>
+				</OrderDates>
+				<DerivedFromOrder OrderNo="" OrderDate=""/>
+				<PersonInfoShipTo Title="" Company="" Country="" ZipCode="" TaxGeoCode="" State="" PersonInfoKey="" MobilePhone="" MiddleName="" LastName="" FirstName="" EveningPhone="" EMailID="" DayPhone="" City="" AddressLine3="" AddressLine2="" AddressLine1="" AddressID=""/>
+			
+			</OrderLine>
+		</OrderLines>
+		<PersonInfoShipTo Title="" Company="" Country="" ZipCode="" TaxGeoCode="" State="" PersonInfoKey="" MobilePhone="" MiddleName="" LastName="" FirstName="" EveningPhone="" EMailID="" DayPhone="" City="" AddressLine3="" AddressLine2="" AddressLine1="" AddressID=""/>
+		<PersonInfoBillTo Title="" Company="" Country="" ZipCode="" State="" PersonInfoKey="" MobilePhone="" MiddleName="" LastName="" FirstName="" EveningPhone="" EMailID="" DayPhone="" City="" AddressLine3="" AddressLine2="" AddressLine1="" AddressID=""/>
+		<PaymentMethods>
+			<PaymentMethod DisplayCreditCardNo="" BillToKey="" PaymentType="" LastName="" FirstName="" UnlimitedCharges="" TotalRefundedAmount="" TotalCharged="" TotalAuthorized="" SvcNo="" RequestedChargeAmount="" RequestedAuthAmount="" PaymentTypeGroup="" PaymentReference3="" PaymentReference2="" PaymentReference1="" PaymentReference4="" PaymentReference5="" PaymentReference6="" PaymentReference7="" PaymentReference8="" PaymentKey="" MaxChargeLimit="" FundsAvailable="" DebitCardNo="" CustomerAccountNo="" CreditCardType="" CreditCardNo="" CreditCardName="" CreditCardExpDate="" CheckReference="" CheckNo="" ChargeSequence="">
+				<PersonInfoBillTo Title="" Company="" Country="" ZipCode="" State="" PersonID="" MobilePhone="" MiddleName="" LastName="" FirstName="" EMailID="" DayPhone="" City="" AddressLine3="" AddressLine2="" AddressLine1="" AddressID=""/>
+			</PaymentMethod>
+		</PaymentMethods>
+		<CreditCardTransactions>
+			<CreditCardTransaction Reference2="" Reference1="" ChargeTransactionKey="" TranType="" TranReturnMessage="" TranReturnFlag="" TranReturnCode="" TranRequestTime="" TranAmount="" RequestId="" ParentKey="" InternalReturnMessage="" InternalReturnFlag="" InternalReturnCode="" CreditCardTransactionKey="" CVVAuthCode="" AuthTime="" AuthReturnMessage="" AuthReturnFlag="" AuthReturnCode="" AuthCode="" AuthAvs="" AuthAmount=""/>
+		</CreditCardTransactions>
+		<ChargeTransactionDetails>
+			<ChargeTransactionDetail Status="" OrderHeaderKey="" AuthorizationExpirationDate="" SettledAmount="" PaymentKey="" TransactionDate="" RequestAmount="" PaymentEntryType="" OrderInvoiceKey="" OpenAuthorizedAmount="" HoldAgainstBook="" ExecutionDate="" DebitAmount="" CreditAmount="" CollectionDate="" ChargeType="" ChargeTransactionKey="" AuthorizationID="">
+				<CreditCardTransactions>
+					<CreditCardTransaction Reference2="" Reference1="" ChargeTransactionKey="" TranAmount="" RequestId="" CreditCardTransactionKey="" CVVAuthCode=""  AuthReturnMessage="" AuthReturnFlag="" AuthReturnCode="" AuthCode="" AuthAvs="" AuthAmount=""/>
+				</CreditCardTransactions>
+				<PaymentTransactionErrorList>	
+					<PaymentTransactionError Message="" ChargeTransactionKey="" MessageType=""/>
+				</PaymentTransactionErrorList>
+				<PaymentMethod BillToKey="" PaymentType="" LastName="" FirstName="" PaymentReference5="" UnlimitedCharges="" TotalCharged="" TotalAuthorized="" SvcNo="" PaymentTypeGroup=""  PaymentReference3="" PaymentReference2="" PaymentReference1="" PaymentKey="" MaxChargeLimit="" FundsAvailable="" DebitCardNo="" CustomerAccountNo="" CreditCardType="" CreditCardNo="" CreditCardName="" CreditCardExpDate="" CheckReference="" CheckNo="" ChargeSequence="" PaymentReference9=""/>
+			</ChargeTransactionDetail>
+		</ChargeTransactionDetails>
+		<OrderHoldTypes>
+			<OrderHoldType HoldType="" Status=""/>
+		</OrderHoldTypes>
+		<OrderDates>
+			<OrderDate OrderHeaderKey="" OrderLineKey="" RequestedDate="" OrderReleaseKey="" ExpectedDate="" DateTypeId="" CommittedDate="" ActualDate=""/>
+		</OrderDates>
+		<HeaderCharges>
+			<HeaderCharge IsShippingCharge="" IsManual="" IsDiscount="" IsBillable="" ChargeName="" ChargeCategory="" ChargeNameKey="" ChargeAmount=""/>
+		</HeaderCharges>
+		<HeaderTaxes>
+			<HeaderTax ChargeName="" ChargeCategory="" TaxableFlag="" Tax="" TaxPercentage="" TaxName="" RemainingTax="" Reference3="" Reference2="" Reference1="" InvoicedTax=""/>
+		</HeaderTaxes>
+	</Order>
+</OrderList>

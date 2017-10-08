@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Licensed Materials - Property of IBM
+   
+    (C) Copyright IBM Corp. 2014, 2016
+ -->
+
+<mashups>
+    <mashup description="" endpoint="EP_ORDER" id="extn_getAdditionalUserData"
+        mashuptype="XAPI" resourceId="" transactional="true">
+        <API Name="getCommonCodeList">
+            <Input>
+                <CommonCode CodeType="YCD_TITLE"/>
+            </Input>
+			
+            <Template>
+                <CommonCodeList>
+                    <CommonCode CodeValue=""/>
+                </CommonCodeList>
+            </Template>
+                
+        </API>
+        <classInformation name="com.rds.ccc.common.mashups.RDSGetUserDataFromSession"/>
+        <APINamespace inputNS="extn_getAdditionalUserData_input" outputNS="extn_getAdditionalUserData_output"/>
+        <AlternateResourceIds/>
+    </mashup> 
+	<mashup description="" endpoint="EP_ORDER" id="extn_getInventoryOrganization"
+        mashuptype="XAPI" resourceId="" transactional="true">
+        <API Name="getOrganizationList">
+            <Input>
+                <Organization OrganizationCode="xml:scControllerInput:/Order/@EnterpriseCode" />
+            </Input>
+			
+            <Template>
+                <OrganizationList>
+					<Organization OrganizationCode="" InventoryOrganizationCode="" />
+				</OrganizationList>
+            </Template>
+        </API>
+        <classInformation name="com.ibm.isccs.common.mashups.SCCSBaseMashup"/>
+        <APINamespace inputNS="extn_getInventoryOrganization_input" outputNS="extn_getInventoryOrganization_output"/>
+        <AlternateResourceIds/>
+    </mashup>
+	<mashup description="" endpoint="EP_ORDER"
+        id="extn_invokeIPGRestService" mashuptype="XAPI" resourceId="" transactional="true">
+        <API Name="getCommonCodeList">
+            <Input/>
+            <Template/>
+        </API>
+        <classInformation name="com.ibm.isccs.custom.mashups.IPGIntegration"/>
+        <APINamespace inputNS="extn_invokeIPGRestService_input" outputNS="extn_invokeIPGRestService_output"/>
+        <AlternateResourceIds/>
+    </mashup>
+	<mashup description="" endpoint="EP_ORDER"
+        id="extn_PaymentCardNoTokenization" mashuptype="XAPI"
+        resourceId="" transactional="true">
+        <API Name="getCommonCodeList">
+            <Input/>
+            <Template/>
+        </API>
+        <classInformation name="com.ibm.isccs.custom.mashups.PaymentCardNoTokenization"/>
+        <APINamespace inputNS="extn_PaymentCardNoTokenization_input" outputNS="extn_PaymentCardNoTokenization_output"/>
+        <AlternateResourceIds/>
+    </mashup>
+    <mashup description="" endpoint="EP_ORDER" id="extn_changeOrder"
+        mashuptype="XAPI" resourceId="" transactional="true">
+        <API Name="changeOrder">
+            <Input/>
+            <Template>
+                <Order OrderHeaderKey="" SellerOrganizationCode="">
+                    <PaymentMethods>
+                        <PaymentMethod AwaitingAuthInterfaceAmount=""
+                            AwaitingChargeInterfaceAmount=""
+                            BillToKey="" ChargeSequence="" CheckNo=""
+                            CheckReference="" CreditCardExpDate=""
+                            CreditCardName="" CreditCardNo=""
+                            CreditCardType="" CustomerAccountNo=""
+                            CustomerPONo="" DisplayCreditCardNo=""
+                            DisplayCustomerAccountNo=""
+                            DisplayPaymentReference1=""
+                            DisplayPrimaryAccountNo="" DisplaySvcNo=""
+                            FirstName="" FundsAvailable=""
+                            GetFundsAvailableUserExitInvoked=""
+                            IncompletePaymentType="" IsCustomer=""
+                            LastName="" MaxChargeLimit="" MiddleName=""
+                            PaymentKey="" PaymentReference1=""
+                            PaymentReference2="" PaymentReference3=""
+                            PaymentType="" PaymentTypeGroup=""
+                            PlannedRefundAmount=""
+                            RequestedAuthAmount=""
+                            RequestedChargeAmount=""
+                            SuspendAnyMoreCharges="" SvcNo=""
+                            TotalAuthorized="" TotalCharged=""
+                            TotalRefundedAmount="" UnlimitedCharges="">
+                            <PersonInfoBillTo AddressLine1=""
+                                AddressLine2="" AddressLine3=""
+                                AddressLine4="" AddressLine5=""
+                                AddressLine6="" AlternateEmailID=""
+                                Beeper="" City="" Company="" Country=""
+                                DayFaxNo="" DayPhone="" Department=""
+                                EMailID="" EveningFaxNo=""
+                                EveningPhone="" FirstName=""
+                                IsCommercialAddress="" JobTitle=""
+                                LastName="" MiddleName="" MobilePhone=""
+                                OtherPhone="" PersonID=""
+                                PersonInfoKey="" State="" Suffix=""
+                                TaxGeoCode="" Title="" ZipCode=""/>
+                            <ChargeTransactionDetails
+                                RemainingAmountToAuth=""
+                                TotalTransferredIn="" TotalTransferredOut="">
+                                <ChargeTransactionDetail
+                                    AuthorizationExpirationDate=""
+                                    BookAmount="" ChargeType=""
+                                    CreditAmount="" DebitAmount=""
+                                    Modifyts="" OpenAuthorizedAmount=""
+                                    PaymentKey="" Status=""/>
+                            </ChargeTransactionDetails>
+                        </PaymentMethod>
+                    </PaymentMethods>
+                    <ChargeTransactionDetails RemainingAmountToAuth="">
+                        <ChargeTransactionDetail PaymentKey="" Status="" TransactionDate="">
+                            <PaymentTransactionErrorList>
+                                <PaymentTransactionError Message="" MessageType=""/>
+                            </PaymentTransactionErrorList>
+                            <CreditCardTransactions>
+                                <CreditCardTransaction InternalReturnMessage=""/>
+                            </CreditCardTransactions>
+                        </ChargeTransactionDetail>
+                    </ChargeTransactionDetails>
+                    <OverallTotals GrandTotal=""/>
+                </Order>
+            </Template>
+        </API>
+        <classInformation name="com.ibm.isccs.common.mashups.SCCSBaseMashup"/>
+        <APINamespace inputNS="extn_changeOrder_input" outputNS="extn_changeOrder_output"/>
+        <AlternateResourceIds/>
+    </mashup>
+	<mashup description="" endpoint="EP_ORDER"
+        id="extn_GCBalanceCheck" mashuptype="XAPI"
+        resourceId="" transactional="true">
+        <API FlowName="RDSSVSGCActivation">
+			<Input>
+				<GiftCard>
+					<Card CardCurrency="" CardExpiration="" CardNumber="" CardTrackOne="" CardTrackTwo="" EOVDate="" PIN="" IsGCApproved="" />
+					<IssueAmount Amount="" Currency="" />
+					<Transaction CheckForDuplicate="" Date="" Division="" InvoiceNumber="" MerchantName="" MerchantNumber="" RoutingID="" Stan="" StoreNumber="" TransactionID="" />
+				</GiftCard>
+			</Input>
+			<Template>
+				<GiftCard>
+					<Card CardCurrency="" CardExpiration="" CardNumber="" CardTrackOne="" CardTrackTwo="" EOVDate="" PIN="" IsGCApproved="" />
+					<IssueAmount Amount="" Currency="" />
+					<Transaction CheckForDuplicate="" Date="" Division="" InvoiceNumber="" MerchantName="" MerchantNumber="" RoutingID="" Stan="" StoreNumber="" TransactionID="" />
+				</GiftCard>
+			</Template>
+        </API>
+        <classInformation name="com.ibm.isccs.common.mashups.SCCSBaseMashup"/>
+        <APINamespace inputNS="extn_GCBalanceCheck_input" outputNS="extn_GCBalanceCheck_output"/>
+        <AlternateResourceIds/>
+    </mashup>
+</mashups>

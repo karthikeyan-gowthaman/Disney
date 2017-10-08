@@ -1,0 +1,30 @@
+		<div>
+		 	<div data-dojo-type="idx/form/TextBox" 
+	 					data-dojo-props="data_dojo_props_diff: {
+	 								_sc_extensibility_operation : 'insert' , 
+		_sc_extensibility_moveOrder : '1' , 
+		_sc_extensibility_referenceUId : 'txtDisplayCreditCardNo' , 
+		uId : 'extn_txtCardNo' , 
+		required : true , 
+		_sc_extensibility_position : 'before'  
+ 		,scExtensionDataFn :
+		 function() { 
+			return { 
+			 	label : 			this.getSimpleBundleString('CardNumber')
+,	
+			 	bindingData : 	{
+		 targetBinding : 	[
+	 		{
+		 path : 			'PaymentMethod.CreditCardNo'
+,
+		 scExtensibilityArrayItemId : 			'extn_TargetBindings_0'
+,
+		 namespace : 			'PaymentCapture_input'
+	}
+	]
+	}
+			}
+		}
+	 					}">
+		 	</div>  
+		</div>

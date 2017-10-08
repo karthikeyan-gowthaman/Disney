@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionMetaData>
+    <ScreenExtension extnClassName="PaymentCapture_StoredValueExtn"
+        extnPackage="extn.common.paymentCapture"
+        originalScreen="isccs.common.paymentCapture.PaymentCapture_StoredValue"
+        originalScreenPackage="isccs.common.paymentCapture" type="diffrential">
+        <Items>
+            <TextField _sc_extensibility_moveOrder="1"
+                _sc_extensibility_operation="insert"
+                _sc_extensibility_position="before"
+                _sc_extensibility_referenceUId="txtDisplaySvcNo"
+                label="$(_scSimpleBundle:CardNumber)" uId="extn_txtCardNo">
+                <BindingData>
+                    <TargetBindings>
+                        <TargetBinding namespace="PaymentCapture_input"
+                            path="PaymentMethod.SvcNo" scExtensibilityArrayItemId="extn_TargetBindings_0"/>
+                    </TargetBindings>
+                </BindingData>
+            </TextField>
+            <TextField _sc_extensibility_operation="change"
+                _sc_extensibility_referenceUId="txtPaymentReference1" required="true"/>
+        </Items>
+        <Namespaces>
+            <SourceNamespaces>
+                <Source isExtn="true"
+                    scExtensibilityArrayItemId="extn_SourceNamespaces_1" value="extn_GCBalanceOutput"/>
+            </SourceNamespaces>
+        </Namespaces>
+        <Subscribers>
+            <Local>
+                <Subscriber eventId="extn_txtCardNo_onBlur"
+                    isExtn="true" sequence="51">
+                    <Handler methodName="invokeTokenization"/>
+                </Subscriber>
+                <Subscriber eventId="txtPaymentReference1_onBlur"
+                    isExtn="true" sequence="51">
+                    <Handler methodName="checkGCBalance"/>
+                </Subscriber>
+            </Local>
+        </Subscribers>
+        <MashupRefs>
+            <Behavior>
+                <MashupRef extnType="ADD"
+                    mashupId="extn_PaymentCardNoTokenization" mashupRefId="extn_PaymentCardNoTokenization"/>
+                <MashupRef extnType="ADD" mashupId="extn_GCBalanceCheck" mashupRefId="extn_GCBalanceCheck"/>
+            </Behavior>
+        </MashupRefs>
+    </ScreenExtension>
+</ExtensionMetaData>

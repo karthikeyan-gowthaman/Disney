@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Controller
+    className="com.sterlingcommerce.ui.web.platform.controller.SCUIXAPIMashupController"
+    controllerId="extn.common.paymentCapture.PaymentCapture_StoredValueExtnBehaviorController"
+    requestMethodSupported="POST" screenId="extn.common.paymentCapture.PaymentCapture_StoredValueExtn">
+    <MashupRefs>
+        <MashupRef extnType="ADD"
+            mashupId="extn_PaymentCardNoTokenization"
+            mashupRefId="extn_PaymentCardNoTokenization" permissionId=""/>
+		<MashupRef extnType="ADD" mashupId="extn_GCBalanceCheck"
+            mashupRefId="extn_GCBalanceCheck" permissionId=""/>
+    </MashupRefs>
+</Controller>

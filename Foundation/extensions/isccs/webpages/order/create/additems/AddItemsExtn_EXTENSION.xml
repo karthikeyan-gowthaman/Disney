@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionMetaData>
+    <ScreenExtension extnClassName="AddItemsExtn"
+        extnPackage="extn.order.create.additems"
+        originalScreen="isccs.order.create.additems.AddItems"
+        originalScreenPackage="isccs.order.create.additems" type="diffrential">
+        <Namespaces>
+            <SourceNamespaces>
+                <Source isExtn="true"
+                    scExtensibilityArrayItemId="extn_SourceNamespaces_8" value="extn_getInventoryOrganization_output"/>
+            </SourceNamespaces>
+        </Namespaces>
+        <MashupRefs>
+            <Init>
+                <MashupRef extnType="ADD"
+                    mashupId="extn_getInventoryOrganization"
+                    mashupRefId="extn_getInventoryOrganization" sourceNamespace="extn_getInventoryOrganization_output"/>
+            </Init>
+        </MashupRefs>
+    </ScreenExtension>
+</ExtensionMetaData>

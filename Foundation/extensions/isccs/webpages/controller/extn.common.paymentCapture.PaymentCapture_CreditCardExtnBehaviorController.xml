@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Controller
+    className="com.sterlingcommerce.ui.web.platform.controller.SCUIXAPIMashupController"
+    controllerId="extn.common.paymentCapture.PaymentCapture_CreditCardExtnBehaviorController"
+    requestMethodSupported="POST" screenId="extn.common.paymentCapture.PaymentCapture_CreditCardExtn">
+    <MashupRefs>
+        <MashupRef extnType="ADD"
+            mashupId="extn_PaymentCardNoTokenization"
+            mashupRefId="extn_PaymentCardNoTokenization" permissionId=""/>
+    </MashupRefs>
+</Controller>

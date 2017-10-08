@@ -1,0 +1,326 @@
+<?xml version="1.0" ?>
+<project name="Build Script For USF  9.5" default="all" basedir=".">
+ <echo>Fetch properties</echo>
+   <property file="build.dev.properties" />
+	
+	<property environment="env"/>
+	    <property file="${env.INSTALL_DIR}/properties/sandbox.cfg" />
+
+   <condition property="mode.overwrite">
+	<not>
+		<isset property="mode.local" />
+	</not>
+   </condition>
+ <echo>set project path</echo>
+ 
+ 
+   <path id="RDS.class.path">
+      <fileset dir="${INSTALL_DIR}/jar/smcfs/9.5">
+         <include name="**/*.jar" />
+      </fileset>
+    <fileset dir="${INSTALL_DIR}/jar">
+       <include name="**/*.jar" />
+    </fileset>
+    	  <fileset dir="${INSTALL_DIR}/jar/COM_Add-in/9.5_9.5">
+    	       <include name="**/*.jar" />
+    	    </fileset>
+
+      <fileset dir="${INSTALL_DIR}/jar/platform_afc/9_5">
+         <include name="**/*.jar" />
+      </fileset>
+
+      <fileset dir="${INSTALL_DIR}/jar/platform/9_5">
+         <include name="**/*.jar" />
+      </fileset>
+
+      <fileset dir="${INSTALL_DIR}/jar/log4j/1_2_17">
+         <include name="**/*.jar" />
+      </fileset>
+
+      <fileset dir="${INSTALL_DIR}/repository/eardata/platform/war/yfscommon">
+         <include name="**/*.jar" />
+      </fileset>
+
+      <fileset dir="${INSTALL_DIR}/jar/platform_afc_ui_impl/9_5">
+         <include name="**/*.jar" />
+      </fileset>
+
+      <fileset dir="${INSTALL_DIR}/jar/scecore/9.5">
+         <include name="**/*.jar" />
+      </fileset>
+
+      <!--fileset dir="${WL_HOME}/server/lib">
+         <include name="weblogic.jar" />
+      </fileset-->
+</path>
+
+   <path id="project.class.path">
+      <path refid="RDS.class.path" />
+   </path>
+   
+    <path id="svn.classpath">
+		<!--<pathelement location="${svnjavahl.jar}" /> -->
+		<pathelement location="${svnant.jar}" />
+		<!--<pathelement location="${svnClientAdapter.jar}" />  -->
+	</path>
+
+   <target name="all" depends="check-gitrepo, clean, build-jars,copy-files, deploy-extensions,build-smcfs-ear" description="Executes all the targets">
+    
+   </target>
+   
+	<!--target name="all" depends="clean, build-jars,copy-files, deploy-extensions,build-war" description="Executes all the targets">	
+   	   	
+   </target-->
+   <!-- Fetch code from git repo -->
+   <target name="check-gitrepo" description="fetch from git repository">
+      <echo>Fetching from git repository</echo>
+      <exec executable="./gitpull.sh" failonerror="true"/>
+	  </target>
+	  
+<!-- Cleans the custom code in INSTALL_DIR -->
+   <target name="clean" description="Deletes directories">
+<!-- Delete directories -->
+      <echo>Delete all extension folders</echo>
+
+      <!-- <delete dir="${INSTALL_DIR}/repository/xapi/template/merged/xsl/extn" />
+      <delete dir="${INSTALL_DIR}/repository/xapi/template/merged/event/extn" /> -->
+      <delete dir="${INSTALL_DIR}/extensions" />
+	  <delete dir="${INSTALL_DIR}/repository/eardata/isccs/extn" />
+	  <delete dir="${INSTALL_DIR}/repository/eardata/isccsdev/extn" />
+      <!--delete dir="${binhome}/dist" /-->
+
+<!-- Re-create directories -->
+      <!--mkdir dir="${binhome}/dist" /-->
+   </target>
+
+
+   <target name="clean-up-for-build" if="mode.overwrite">
+      <delete dir="${devhome}/bin" />
+      <mkdir dir="${devhome}/bin" />
+	  <delete dir="${devhome}/dist/archive" />
+      <mkdir dir="${devhome}/dist/archive" />
+   </target>
+
+   <target name="build-jars" description="Make Jar">
+<!-- Compile the java source files -->
+      <antcall target="clean-up-for-build" />
+	  <javac classpathref="project.class.path" destdir="${devhome}/bin" executable="${JAVA_HOME}/bin/javac" debug="on" debuglevel="lines,vars,source" encoding="iso-8859-1" includeantruntime="false" failonerror="true">
+      	<src path="${devhome}/src">
+         </src>
+      </javac >
+
+<!-- Makes the project jar file -->
+<!--Create version file -->
+      <tstamp>
+         <format property="NOW" pattern="EEE, MMMM dd yyyy hh:mm aa z" />
+      </tstamp>
+      <echo file="${devhome}/dist/version.txt">Release Version: ${project.name} V ${release.version} Release Date: ${NOW}</echo>
+
+<!--Copy the version.txt-->
+      <copy file="${devhome}/dist/version.txt" todir="${devhome}/bin" />
+
+      <!--<jar destfile="${devhome}/dist/archive/${project.name}.jar" basedir="${devhome}/bin">
+         <manifest>
+            <attribute name="Built-By" value="${user.name}" />
+            <section name="version-information">
+               <attribute name="Version" value="${release.version}" />
+               <attribute name="Date" value="${NOW}" />
+            </section>
+         </manifest>
+      </jar>-->
+	   <jar destfile="${devhome}/dist/archive/${project.name}.jar" basedir="${devhome}/bin">
+         <manifest>
+            <attribute name="Built-By" value="${user.name}" />
+            <section name="version-information">
+               <attribute name="Version" value="${release.version}" />
+               <attribute name="Date" value="${NOW}" />
+            </section>
+         </manifest>
+      </jar>
+      <!--<copy file="${devhome}/dist/archive/${project.name}.jar" todir="${INSTALL_DIR}/external_deployments/" overwrite="true" /> -->
+   </target>
+
+	<target name="copy-files" description="Deploys the project files in the relevant folders of MCF Installation">
+<!--Copy resources-->
+      <echo>Copy the project specific resources to resources folder of APP</echo>
+<!--
+      <copy todir="${INSTALL_DIR}/resources/" overwrite="${mode.overwrite}">
+         <fileset dir="${devhome}/generic/resources">
+          </fileset>
+      </copy>
+-->
+<!--Copy repository-->
+      <echo>Copy the project specific repository for CCC extensions purpose to repository folder of APP</echo>
+      <copy todir="${INSTALL_DIR}/repository/" overwrite="${mode.overwrite}">
+         <fileset dir="${devhome}/Foundation/repository">
+         </fileset>
+      </copy>
+	  
+<!--Copy extensions-->
+      <echo>Copy the project specific extensions to extensions folder of APP</echo>
+	  <copy todir="${INSTALL_DIR}/extensions/" overwrite="${mode.overwrite}">
+         <fileset dir="${devhome}/Foundation/extensions">
+         </fileset>
+      </copy>
+
+<!-- Compiling CCUI custom code n Creating jar -->	  
+	<echo>Compiling CCUI custom code n Creating jar</echo>
+		<!-- Compile the java source files -->
+		<delete dir="${devhome}/CCC_bin"/>
+		<mkdir dir="${devhome}/CCC_bin"/>
+		<echo>Building the CCC jar.</echo>
+		<javac classpathref="project.class.path" executable="${jdk.home}/bin/javac" destdir="${devhome}/CCC_bin" debug="on" debuglevel="lines,vars,source">
+			<src path="${devhome}/CCC_src"/>
+		</javac>
+		<!-- Makes the project jar file -->
+		<!--Create version file -->
+		<tstamp>
+			<format property="NOW" pattern="EEE, MMMM dd yyyy hh:mm aa z"/>
+		</tstamp>
+		<delete dir="${devhome}/CCC_jar"/>
+		<mkdir dir="${devhome}/CCC_jar"/>
+		<jar destfile="${devhome}/CCC_jar/${project.name}_ccc.jar"
+			basedir="${devhome}/CCC_bin">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}" />
+				<section name="version-information">
+					<attribute name="Version"
+						value="${release.version}" />
+					<attribute name="BuildDate" value="${NOW}" />
+				</section>
+			</manifest>
+		</jar>
+		
+	<echo>Coping ${project.name}_ccc.jar under ${INSTALL_DIR}/repository/eardata/isccsdev/extn/WEB-INF/lib</echo>
+		<copy todir="${INSTALL_DIR}/repository/eardata/isccs/extn/WEB-INF/lib/" overwrite="${mode.overwrite}">
+			<fileset dir="${devhome}/CCC_jar/${project.name}_ccc.jar">
+			</fileset>
+		</copy>
+		<copy todir="${INSTALL_DIR}/repository/eardata/isccsdev/extn/WEB-INF/lib/" overwrite="${mode.overwrite}">
+			<fileset dir="${devhome}/CCC_jar/${project.name}_ccc.jar">
+			</fileset>
+		</copy>
+	  
+<!--Copy Properties-->
+      <echo>Copy the Properties file inside Foundation </echo>
+	   <copy todir="${INSTALL_DIR}/properties/" overwrite="${mode.overwrite}">
+           <fileset file="${devhome}/Foundation/properties/customer_overrides.properties.17.1">
+           </fileset>
+          </copy>
+	  <rename src="${INSTALL_DIR}/properties/customer_overrides.properties.17.1"
+	   dest="${INSTALL_DIR}/properties/customer_overrides.properties"/>	  
+	</target>
+	
+	<target name="thirdparty" description="installs 3rd party jar">
+		<exec executable="${INSTALL_DIR}/bin/install3rdParty.sh" failonerror="true">
+	   	   	         <arg value="RDS3" />
+	   	   	         <arg value="9_5" />
+	   	   	         <arg value="-j" />
+	   	             <arg value="${devhome}/thirdparty/*.jar"/>
+	   	   	         <arg value="-targetJVM" />
+	   	   	         <arg value="EVERY" />
+		</exec>
+	</target>
+   <target name="deploy-extensions" description="Deploys extensions on MCF app">
+      <echo>Running install3rdParty for project jar</echo>
+
+      <exec executable="${INSTALL_DIR}/bin/install3rdParty.sh" failonerror="true">
+         <arg value="RDS3" />
+         <arg value="9_5" />
+         <arg value="-j" />
+         <arg value="${devhome}/dist/archive/${project.name}.jar" />
+         <arg value="-targetJVM" />
+         <arg value="EVERY" />
+      </exec>
+	  
+      <echo>Building resources jar</echo>
+
+      <exec executable="${INSTALL_DIR}/bin/deployer.sh" failonerror="true">
+         <arg value="-t" />
+         <arg value="resourcejar" />
+      </exec>
+
+      <echo>Running entity deployer</echo>
+
+      <exec executable="${INSTALL_DIR}/bin/deployer.sh" failonerror="true">
+         <arg value="-t" />
+         <arg value="entitydeployer" />
+      </exec>
+	 
+   </target>
+   
+   <target name="build-war" description="Builds war file for deployment">
+      <echo>Building war for appserver without documents , sma and webservices</echo>
+
+      <exec executable="${INSTALL_DIR}/bin/buildwar.sh">
+         <arg value="-Dappserver=${appserver.id}" />
+         <!--arg value="-Dwarfiles=smcfs,sbc" /-->
+         <arg value="-Dwarfiles=smcfs,sbc" />
+         <arg value="-Dnodocear=true" />
+         <arg value="-Ddevmode=true" />
+         <arg value="-Dnowebservice=true" />
+      </exec>
+
+      <delete dir="${binhome}/dist/tmpear" />
+		<copy todir="${INSTALL_DIR}/USFdeploy/" overwrite="${mode.overwrite}">
+         <fileset dir="${INSTALL_DIR}/external_deployments">
+         </fileset>
+      </copy>
+   </target>
+
+   <target name="build-smcfs-ear" description="Builds EAR file for deployment" depends="deploy-extensions">
+	<exec executable="${INSTALL_DIR}/bin/buildear.sh" failonerror="true">
+		<arg value="-Dappserver=${appserver.id}"/>
+		<!--<arg value="-Dwarfiles=smcfs,sbc"/>-->
+		<arg value="-Dwarfiles=smcfs,sbc,isccsdev,wsc"/>
+		<arg value="-Dearfile=smcfs.ear"/>
+		<arg value="-Dnodocear=true"/>
+		<arg value="-Ddevmode=true"/>
+		<arg value="-Dnowebservice=true"/>
+		<arg value="-Dsupportmultiwar=true"/>
+		<arg value="-DuiExtensibilityMode=true"/>
+		<arg value="-Dnoejb=true"/>
+		<arg value="-Duidevmode=true"/>	
+		<arg value="create-ear"/>									  
+	</exec>
+   </target>
+
+<!--   
+   <target name="create-USF-dependecy-Jar" description="Create dependency Jar">
+      <echo>Create USF Dependency Jar Used in Classpath of Agent and Integrtion Servers</echo>
+
+      <copy file="${devhome}/dist/Foundation/${project.name}.jar" todir="${devhome}/thirdparty/" overwrite="true" />
+      <copy file="${INSTALL_DIR}/jar/platform/5_5/resources.jar" todir="${devhome}/thirdparty/" overwrite="true" />
+      <copy file="${INSTALL_DIR}/jar/platform/5_5/entities.jar" todir="${devhome}/thirdparty/" overwrite="true" />
+
+      <jar destfile="${INSTALL_DIR}/external_deployments/${releaseJar}.jar" basedir="${devhome}/thirdparty/" excludes="**/CVS">
+         <manifest>
+            <attribute name="Built-By" value="${user.name}" />
+            <section name="version-information">
+               <attribute name="Version" value="${release.version}" />
+            </section>
+         </manifest>
+      </jar>
+   </target>
+ -->
+   <!--target name="pre-compile">
+      <echo>Do precompilation of smcfs.ear file</echo>
+
+      <java classname="weblogic.appc">
+         <arg line=" -forceGeneration -O -k -verbose ${INSTALL_DIR}/external_deployments/smcfs.ear " />
+         <classpath>
+            <pathelement location="${WL_HOME}/server/lib/api.jar" />
+            <pathelement location="${WL_HOME}/server/lib/weblogic.jar" />
+            <pathelement location="${WL_HOME}/server/lib/weblogic_sp.jar" />
+            <pathelement location="${WL_HOME}/server/lib/ojdbc6.jar" />
+            <pathelement location="${WL_HOME}/server/lib/weblogic_sp.jar" />
+            <pathelement location="${WL_HOME}/server/lib/webservices.jar" />
+            <pathelement location="${JAVA_HOME}/jre/lib/rt.jar" />
+            <pathelement location="${JAVA_HOME}/lib/tools.jar" />
+            <pathelement location="${INSTALL_DIR}/jar/smcfs/9.4/jloox20.jar" />
+            <pathelement location="${INSTALL_DIR}/jar/smcfs/9.4/lxgis20.jar" />
+            <pathelement path="${java.class.path}" />
+         </classpath>
+      </java>
+   </target-->
+</project>

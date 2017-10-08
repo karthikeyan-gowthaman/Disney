@@ -1,0 +1,71 @@
+yfs.ctx.monitor.thread.id=false
+#yfs.httpOnlyCookie=false
+#yfs.yfs.searchIndex.rootDirectory=/opt/IBM/OMS95/Foundation/SearchIndex
+#yfs.yfs.ssdcs.url=https://9.113.36.64:9443/ssdcs
+#yfs.yfs.install.displaydoublequantity=N
+
+
+# RDS 3.0 JMS Configuration parameters
+
+yfs.itemload.providerurl = corbaloc:iiop:9.113.36.64:2809
+yfs.itemload.destination = ITEM_LOAD_QUEUE
+yfs.itemload.connectionfactory = AGENT_QCF
+yfs.itemload.alerttype = ItemLoadAlert
+
+yfs.agent.providerurl = corbaloc:iiop:9.113.36.64:2809
+yfs.agent.connectionfactory = AGENT_QCF
+
+# Stub mode flag
+yfs.STUB_MODE = Y
+
+#yfs.api.security.enabled=N
+
+yfs.scheduleorder.destination = RDS_ScheduleOrderQueue
+yfs.releaseorder.destination = RDS_ReleaseOrderQueue
+yfs.shipinvoice.destination = RDS_CreateInvoiceQueue
+yfs.sendinvoice.destination = RDS_SendInvoiceQueue
+yfs.paymentcollection.destination = RDS_PaymentCollectionQueue
+yfs.paymentexecution.destination = RDS_PaymentExecutionQueue
+yfs.rtam.destination = RDS_RTAMQueue
+yfs.sendinvoice.return.destination = RDS_SendInvoiceReturnQueue
+yfs.releasereturn.destination = RDS_ReleaseReturnQueue
+yfs.returninvoice.destination = RDS_CreateInvoiceReturnQueue
+yfs.loadinventory.destination = RDS_LoadInventoryMismatch
+yfs.adjustinventory.destination = RDS_AdjustInventoryQueue
+yfs.publishinvoice.destination = RDS_InvoiceQueue
+yfs.confirmOrderNotification.destination= RDS_ConfirmOrderNotification
+yfs.shipNotification.destination= RDS_ShipConfirmNotification
+yfs.cancelOrderNotification.destination=RDS_CancelOrderNotification
+yfs.shipmentNotification.destination= RDS_ShipmentNotification
+yfs.returnPaymentCollection.destination = RDS_ReturnPaymentCollection
+yfs.returnPaymentExecution.destination = RDS_ReturnPaymentExecution
+yfs.returnCollectionNotification.destination= RDS_RefundCollectionNotification
+yfs.returnEnhanceMonitor.destination= EnhancedReturnQueue
+yfs.salesEnhanceMonitor.destination= EnhancedMonitorQueue
+
+#Cybersource webservice
+yfs.CS_END_POINT_URL=https://ics2wstesta.ic3.com:443/commerce/1.x/transactionProcessor
+yfs.CS_USER_ID=toryburchadv
+yfs.CS_PASSWORD=vBQWrsHZCFKjChFpnzoW1AL//uu4yZyLWp4yFDlyj5McKjlB6+BuRB7rJWf2mni658Q87DCM87hJFgMfheS4UMB2veKfLZ4z0IW0xPXQyVa3r6XlUEIDeNEyH9EJE0eLsTn60CNpehw0/jBI9pk+1iKOB7Czti4ZI7osCB5Gyxui8VNt4IJEjBRkiMVX7QQZZb/A64vlNYnSxbWzNAJMz5WSP7rdhgmazgPIDzkjgxjvYCssYtTbAecoePagSgAjCFYn5iQ2+prB7bgmo1aCAExg+1uIVn6SuwmWAEHLS+HppYWEXfVKxo44GU6Qtl3iA8DcvR5wj4drtQ3koBHg5w==
+yfs.CS_MERCHANT_ID=toryburchadv
+yfs.CS_MERCHANT_REFERENCE_CODE=S-1234
+
+### Payment Processing
+yfs.CSR_PAYMENT_COLLECTION_AGENT_Q=CS_PAYMENT_COLLECTION_AGENT_Q
+yfs.CSR_PAYMENT_EXECUTION_AGENT_Q=CS_PAYMENT_EXECUTION_AGENT_Q
+yfs.CS_ASYNC_REQ_PROCESSOR_Q=CS_ASYNC_REQ_PROCESSOR_Q
+
+
+### IPG Properties
+yfs.omod.DEFAULT.Payment.URL=https://ips-preprod.ihost.com:50443/trx
+yfs.omod.DEFAULT.PaymentGateway.KeystorePath=/opt/SSFS_9.5/runtime/keystore/DEMO-TEST-0002.jks
+yfs.omod.DEFAULT.PaymentGateway.KeystorePassword=HBnx7T7uy2aH
+yfs.omod.DEFAULT.PaymentGateway.BasicGetURL=https://ips-preprod.ihost.com:50443/
+
+#Catalog Search Index
+yfs.yfs.searchIndex.rootDirectory=/opt/SSFS_9.5/runtime/SearchIndex
+
+#Disney Queues
+yfs.DC_RELEASE_SYNC_QUEUE=DC_RELEASE_QUEUE
+yfs.DC_RELEASE_EMAIL_QUEUE=DISNEY_EMAIL_QUEUE
+yfs.DC_SHIP_CONFIRM_SYNC_QUEUE=DC_SHIP_CONFIRM_QUEUE

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mashups>
+    <mashup id="additems_getCompleteItemList">
+        <API Name="getCompleteItemList">
+            <Input>
+                <Item ApplyDeliveryMethodOverrides="Y"
+                    CallingOrganizationCode="" Currency=""
+                    DisplayLocalizedFieldInLocale="xml:CurrentUser:/User/@Localecode"
+                    DistributionRuleId="" ExecuteQueries="Y"
+                    GetAvailabilityFromCache="Y" IgnoreInvalidItems="N"
+                    IgnoreOrdering="Y" IsForOrdering="Y" ItemID=""
+                    MaximumRecords="2"
+                    PurposeForDisplayClassification="Specification" ShowFinalSupersededItemOnly="Y">
+                    <BarCode BarCodeData="" BarCodeType="Item">
+                        <ContextualInfo EnterpriseCode="" OrganizationCode=""/>
+                    </BarCode>
+                    <ItemAssociationTypeList>
+                        <ItemAssociationType Type="Substitutions"/>
+                    </ItemAssociationTypeList>
+                    <ComplexQuery>
+                        <And>
+                            <Exp Name="ItemGroupCode" QryType="NE" Value="DSOPT"/>
+                            <Exp Name="ItemGroupCode" QryType="NE" Value="DS"/>
+                        </And>
+                    </ComplexQuery>
+                    <CustomerInformation BuyerUserId="" CustomerID=""/>
+                </Item>
+            </Input>
+            <Template>
+                <ItemList CallingOrganizationCode="" Currency="">
+                    <Item HasVisibleAssociations="" IsItemSuperseded=""
+                        ItemGroupCode="" ItemID="" ItemKey=""
+                        OrganizationCode="" UnitOfMeasure="">
+                        <Availability FirstFutureAvailableDate=""
+                            FutureAvailableDate=""
+                            FutureAvailableQuantity=""
+                            OnhandAvailableDate="" OnhandAvailableQuantity="">
+                            <AvailabilityInformation>
+                                <AvailableInventory AvailableQuantity=""
+                                    EffectiveUntilDate="" IsOnhand="" MaxShipDate=""/>
+                            </AvailabilityInformation>
+                        </Availability>
+                        <Components>
+                            <Component ComponentDescription=""
+                                ComponentItemGroupCode=""
+                                ComponentItemID=""
+                                ComponentOrganizationCode=""
+                                ComponentUnitOfMeasure="" KitQuantity=""/>
+                        </Components>
+                        <ComputedPrice BundleTotal="" ListPrice="" UnitPrice="">
+                            <QuantityRangePriceList>
+                                <QuantityRangePrice BreakQtyHigh="" UnitPrice=""/>
+                            </QuantityRangePriceList>
+                        </ComputedPrice>
+                        <ClassificationCodes Model=""/>
+                        <PrimaryInformation AssumeInfiniteInventory=""
+                            BundleFulfillmentMethod=""
+                            BundleFulfillmentMode=""
+                            BundlePricingStrategy=""
+                            DefaultProductClass=""
+                            ExtendedDisplayDescription="" ImageID=""
+                            ImageLabel="" ImageLocation=""
+                            IsDeliveryAllowed=""
+                            IsDeliveryAllowedOverridden=""
+                            IsModelItem="" IsPickupAllowed=""
+                            IsPickupAllowedOverridden=""
+                            IsShippingAllowed=""
+                            IsShippingAllowedOverridden=""
+                            IsSubOnOrderAllowed="" IsValid="" KitCode="" MinOrderQuantity=""/>
+                    </Item>
+                </ItemList>
+            </Template>
+        </API>
+    </mashup>
+	<mashup id="paymentConfirmation_getCompleteOrderDetails">
+        <API Name="getCompleteOrderDetails">
+            <Input/>
+            <Template>
+                <Order>
+                    <PersonInfoShipTo AddressID="" AddressLine1=""
+                        AddressLine2="" AddressLine3="" AddressLine4=""
+                        AddressLine5="" AddressLine6=""
+                        AlternateEmailID="" Beeper="" City="" Company=""
+                        Country="" DayFaxNo="" DayPhone="" Department=""
+                        EMailID="" EveningFaxNo="" EveningPhone=""
+                        FirstName="" IsAddressVerified=""
+                        IsCommercialAddress="" JobTitle="" LastName=""
+                        Latitude="" Longitude="" MiddleName=""
+                        MobilePhone="" OtherPhone="" PersonID=""
+                        PersonInfoKey="" State="" Suffix=""
+                        TaxGeoCode="" Title="" ZipCode=""/>
+                </Order>
+            </Template>
+        </API>
+    </mashup>
+</mashups>

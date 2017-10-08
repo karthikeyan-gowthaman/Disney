@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExtensionMetaData>
+    <ScreenExtension extnClassName="PaymentCapture_CreditCardExtn"
+        extnPackage="extn.common.paymentCapture"
+        originalScreen="isccs.common.paymentCapture.PaymentCapture_CreditCard"
+        originalScreenPackage="isccs.common.paymentCapture" type="diffrential">
+        <Items>
+            <TextField _sc_extensibility_moveOrder="1"
+                _sc_extensibility_operation="insert"
+                _sc_extensibility_position="before"
+                _sc_extensibility_referenceUId="txtDisplayCreditCardNo"
+                label="$(_scSimpleBundle:CardNumber)" required="true" uId="extn_txtCardNo">
+                <BindingData>
+                    <TargetBindings>
+                        <TargetBinding namespace="PaymentCapture_input"
+                            path="PaymentMethod.CreditCardNo" scExtensibilityArrayItemId="extn_TargetBindings_0"/>
+                    </TargetBindings>
+                </BindingData>
+            </TextField>
+        </Items>
+        <Subscribers>
+            <Local>
+                <Subscriber eventId="extn_txtCardNo_onBlur"
+                    isExtn="true" sequence="51">
+                    <Handler methodName="invokeTokenization"/>
+                </Subscriber>
+            </Local>
+        </Subscribers>
+        <MashupRefs>
+            <Behavior>
+                <MashupRef extnType="ADD"
+                    mashupId="extn_PaymentCardNoTokenization" mashupRefId="extn_PaymentCardNoTokenization"/>
+            </Behavior>
+        </MashupRefs>
+    </ScreenExtension>
+</ExtensionMetaData>
