@@ -1,4 +1,4 @@
-package com.ibm.cs.payments.ue;
+package com.ibm.cs.payment.ue;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

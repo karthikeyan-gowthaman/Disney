@@ -1,4 +1,4 @@
-package com.ibm.cs.payments.api;
+package com.ibm.cs.payment.api;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

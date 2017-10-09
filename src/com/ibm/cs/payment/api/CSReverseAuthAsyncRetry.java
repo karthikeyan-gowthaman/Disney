@@ -1,4 +1,4 @@
-package com.ibm.cs.payments.api;
+package com.ibm.cs.payment.api;
 
 import java.util.Properties;
 

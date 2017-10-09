@@ -1,4 +1,4 @@
-package com.ibm.cs.payments.alerts;
+package com.ibm.cs.payment.alerts;
 
 import java.util.Properties;
 
