@@ -4,5 +4,5 @@
  * Copyright IBM Corp. 2014, 2016
  ********************************************************************************/-->
 <CommonCodeList>
-	<CommonCode OrganizationCode='' DocumentType='' CodeValue='' CodeType='' CodeShortDescription='' CodeLength='' CodeLongDescription='' CommonCodeKey=""/>
+	<CommonCode OrganizationCode='' DocumentType='' CodeValue='' CodeType='' CodeShortDescription='' CodeLength='' CodeLongDescription='' />
 </CommonCodeList>
