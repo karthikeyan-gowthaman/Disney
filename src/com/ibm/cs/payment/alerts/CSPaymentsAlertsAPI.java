@@ -50,7 +50,7 @@ public class CSPaymentsAlertsAPI implements YIFCustomApi {
 		
 	}
 
-	@Override
+	
 	public void setProperties(Properties arg0) throws Exception {
 		// TODO Auto-generated method stub
 		

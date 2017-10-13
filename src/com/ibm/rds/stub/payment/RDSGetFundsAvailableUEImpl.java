@@ -24,7 +24,7 @@ public class RDSGetFundsAvailableUEImpl implements YFSGetFundsAvailableUE{
 	 * Returns a default output - always approved
 	 * 
 	 */
-	@Override
+	
 	public Document getFundsAvailable(YFSEnvironment arg0, Document arg1) throws YFSUserExitException {
 		logger.debug("Input Document "+SCXmlUtil.getString(arg1));
 		String requestedAmnt = arg1.getDocumentElement().getAttribute("MaxChargeLimit");

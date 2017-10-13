@@ -15,7 +15,6 @@ public class RDSRecalculateHeaderTaxUE implements YFSRecalculateHeaderTaxUE {
 	private static YFCLogCategory cat = YFCLogCategory.instance(RDSRecalculateHeaderTaxUE.class);
 
 
-	@Override
 	public YFSExtnTaxCalculationOutStruct recalculateHeaderTax(
 			YFSEnvironment env,
 			YFSExtnHeaderTaxCalculationInputStruct extnInStruct)

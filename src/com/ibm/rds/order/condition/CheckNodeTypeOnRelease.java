@@ -31,7 +31,6 @@ public class CheckNodeTypeOnRelease implements YCPDynamicConditionEx
     * @return boolean
     * @throws Exception
     */
-   @Override
    public boolean evaluateCondition( YFSEnvironment env, String arg1, Map arg2, Document inputDoc )
    {
 
@@ -102,7 +101,7 @@ public class CheckNodeTypeOnRelease implements YCPDynamicConditionEx
 
    }
 
-   @Override
+   
    public void setProperties( Map arg0 )
    {
       // TODO Auto-generated method stub

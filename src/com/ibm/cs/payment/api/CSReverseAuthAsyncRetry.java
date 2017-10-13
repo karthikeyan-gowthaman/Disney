@@ -6,7 +6,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.ibm.cs.payments.alerts.CSPaymentsAlertsAPI;
+import com.ibm.cs.payment.alerts.CSPaymentsAlertsAPI;
 import com.ibm.cs.utils.CSCommonUtil;
 import com.ibm.cs.utils.CSConstants;
 import com.ibm.cs.utils.CSXMLConstants;
@@ -185,7 +185,6 @@ public class CSReverseAuthAsyncRetry implements YIFCustomApi {
 		}
 		return isFinFail;
 	}
-	@Override
 	public void setProperties(Properties arg0) throws Exception {
 		// TODO Auto-generated method stub
 
